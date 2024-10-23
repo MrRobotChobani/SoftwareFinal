@@ -1,0 +1,1 @@
+Prescription ID=0, Name=Johnny Dorky, Address=1234 Elm Street, Apt 5B, Springfield, 12345, USA, Sphere=-2.5, Cylinder=-1.0, Axis=90.0, Examination Date=Sun Oct 15 00:00:00 AEDT 2023, Optometrist=OptometristName

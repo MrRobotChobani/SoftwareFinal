@@ -19,16 +19,16 @@ public class PrescriptionTests {
 	
     @BeforeEach
     void setUp() throws IOException {
-        // Create the files if they dont exist
+        // Create files if they dont exist
         File prescFile = new File("presc.txt");
         File remarkFile = new File("remark.txt");
         
         if (!prescFile.exists()) {
-            prescFile.createNewFile();  // Create the prescription file
+            prescFile.createNewFile();  // Create prescription file
         }
         
         if (!remarkFile.exists()) {
-            remarkFile.createNewFile();  // Create the remark file
+            remarkFile.createNewFile();  // Create remark file
         }
     }
 	
@@ -82,7 +82,7 @@ public class PrescriptionTests {
         // Test second valid prescription
         assertTrue(pres2.addPrescription(), "Valid prescription should be added (2nd test)");
 
-        // Check if the second data is written to the file
+        // Check if second data is written to the file
         assertTrue(Files.lines(Paths.get("presc.txt"))
                 .anyMatch(line -> line.contains("Jane Smith")), "Prescription should be written to file (2nd test)");
     }
@@ -109,7 +109,7 @@ public class PrescriptionTests {
         pres.setFirstName("Ab");  // Invalid again
         assertFalse(pres.addPrescription(), "Invalid first name should fail (2nd test)");
 
-        // Check file for both invalid attempts
+        // check file for both invalid attempts
         assertFalse(Files.lines(Paths.get("presc.txt"))
                 .anyMatch(line -> line.contains("Jo Doe")), "Invalid prescription should not be written to file");
     }
@@ -137,7 +137,7 @@ public class PrescriptionTests {
         pres.setLastName("A");  // Another invalid case
         assertFalse(pres.addPrescription(), "Invalid last name should fail (2nd test)");
 
-        // Check file for both invalid attempts
+        // check file for both invalid attempts
         assertFalse(Files.lines(Paths.get("presc.txt"))
                 .anyMatch(line -> line.contains("John D")), "Invalid prescription should not be written to file");
     }
@@ -166,7 +166,7 @@ public class PrescriptionTests {
         pres.setSphere(30.0f);  // Out of range
         assertFalse(pres.addPrescription(), "Invalid sphere should fail (2nd test)");
 
-        // Check file for both invalid attempts
+        // check file for both invalid attempts
         assertFalse(Files.lines(Paths.get("presc.txt"))
                 .anyMatch(line -> line.contains("John Doe")), "Invalid prescription should not be written to file");
     }
@@ -194,7 +194,7 @@ public class PrescriptionTests {
         pres.setAxis(-10.0f);  // Another invalid value
         assertFalse(pres.addPrescription(), "Invalid axis should fail (2nd test)");
 
-        // Check file for both invalid attempts
+        // check file for both invalid attempts
         assertFalse(Files.lines(Paths.get("presc.txt"))
                 .anyMatch(line -> line.contains("John Doe")), "Invalid prescription should not be written to file");
     }
@@ -223,7 +223,7 @@ public class PrescriptionTests {
         assertFalse(pres.addPrescription(), "Invalid optometrist name should fail (2nd test)");
 
         
-        // Check file for both invalid attempts
+        // check file for both invalid attempts
         assertFalse(Files.lines(Paths.get("presc.txt"))
                 .anyMatch(line -> line.contains("John Doe")), "Invalid prescription should not be written to file");
     }
@@ -249,7 +249,7 @@ public class PrescriptionTests {
         // Second valid remark
         assertTrue(pres.addRemark(validRemark2, "Optometrist"), "Second valid remark should be added");
 
-        // Check if the remarks were written to the file
+        // check if remarks were written to the file
         assertTrue(Files.lines(Paths.get("remark.txt"))
                 .anyMatch(line -> line.contains(validRemark1)), "Remark 1 should be written to file");
 
@@ -270,7 +270,7 @@ public class PrescriptionTests {
         String thirdRemark = "Third remark should fail.";
         assertFalse(pres.addRemark(thirdRemark, "Client"), "Adding third remark should fail");
 
-        // Check that the third remark was not added to the file
+        // Check that third remark was not added to the file
         assertFalse(Files.lines(Paths.get("remark.txt"))
                 .anyMatch(line -> line.contains(thirdRemark)), "Third remark should not be written to file");
     }
@@ -282,7 +282,7 @@ public class PrescriptionTests {
     @Test
     void testAddRemarkInvalidWordCountTooFew() throws IOException {
         Prescription pres = new Prescription();
-        String invalidRemark1 = "Too short.";  // Fewer than 6 words
+        String invalidRemark1 = "Too short.";  // less than 6 words
         String invalidRemark2 = "Only four words here.";  // Also too short
 
         // First invalid remark
@@ -291,7 +291,7 @@ public class PrescriptionTests {
         // Second invalid remark
         assertFalse(pres.addRemark(invalidRemark2, "Optometrist"), "Remark with too few words should fail");
 
-        // Ensure neither remark is written to file
+        // check neither remark is written to file
         assertFalse(Files.lines(Paths.get("remark.txt"))
                 .anyMatch(line -> line.contains(invalidRemark1)), "Too short remark should not be written to file");
 
@@ -316,7 +316,7 @@ public class PrescriptionTests {
         // Second invalid remark
         assertFalse(pres.addRemark(invalidRemark2, "Optometrist"), "Remark with too many words should fail");
 
-        // Ensure neither remark is written to file
+        // check neither remark is written to file
         assertFalse(Files.lines(Paths.get("remark.txt"))
                 .anyMatch(line -> line.contains(invalidRemark1)), "Too long remark should not be written to file");
 
@@ -339,7 +339,7 @@ public class PrescriptionTests {
         // Second invalid remark
         assertFalse(pres.addRemark(invalidRemark2, "Optometrist"), "First word not capitalized should fail");
 
-        // Ensure neither remark is written to file
+        // check neither remark is written to file
         assertFalse(Files.lines(Paths.get("remark.txt"))
                 .anyMatch(line -> line.contains(invalidRemark1)), "Not capitalized remark should not be written to file");
 
@@ -364,7 +364,7 @@ public class PrescriptionTests {
         // Second invalid category
         assertFalse(pres.addRemark(validRemark, invalidCategory2), "Remark with invalid category should fail");
 
-        // Ensure no remarks with invalid categories are written to file
+        // check remarks with invalid categories arent written to file
         assertFalse(Files.lines(Paths.get("remark.txt"))
                 .anyMatch(line -> line.contains(validRemark)), "Remark with invalid category should not be written to file");
     }

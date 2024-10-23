@@ -8,7 +8,7 @@ import java.text.ParseException;
 
 public class Prescription {
     
-    // Attributes based on the image example provided
+    // Attributes and stuff
     private int prescID;
     private String firstName;
     private String lastName;
@@ -21,9 +21,7 @@ public class Prescription {
     private String[] remarkTypes = {"Client", "Optometrist"};
     private ArrayList<String> postRemarks = new ArrayList<>();
 
-    // Getters and Setters
-    // The fields in this class are private, which means they are not accessible from outside this class.
-    // Getters and setters are provided to allow controlled access to these fields, ensuring encapsulation.
+    // Getters and Setters to allow the tests to access these attributes
     
     public int getPrescID() {
         return prescID;
@@ -106,7 +104,7 @@ public class Prescription {
         this.postRemarks = postRemarks;
     }
 
-    // Function to add a prescription to a TXT file based on validation
+    // Function to add a prescription to a TXT file based on if valid or not
     public boolean addPrescription() {
         if (!validatePrescription()) {
             System.out.println("Prescription validation failed.");
